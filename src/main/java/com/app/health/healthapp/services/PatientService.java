@@ -1,5 +1,6 @@
 package com.app.health.healthapp.services;
 
+import com.app.health.healthapp.models.HealthApiResponse;
 import com.app.health.healthapp.models.Patient;
 import com.app.health.healthapp.repositories.PatientRepository;
 import com.app.health.healthapp.utils.CryptUtils;
@@ -68,9 +69,34 @@ public class PatientService {
         return "Saved";
     }
 
-    public String signup(Patient patient) {
-        patient.setPassword(CryptUtils.encrypt(patient.getPassword()));
-        this.patientRepository.save(patient);
-        return "Saved";
+    public HealthApiResponse signup(Patient patient) {
+        HealthApiResponse healthApiResponse = new HealthApiResponse();
+        boolean status = this.patientRepository.existsPatientByUsername(patient.getUsername());
+        if (status) {
+            healthApiResponse.setResponseStatus(false);
+            healthApiResponse.setResponseMessage("User Already Exists");
+        } else {
+            patient.setPassword(CryptUtils.encrypt(patient.getPassword()));
+            this.patientRepository.save(patient);
+            healthApiResponse.setResponseStatus(true);
+            healthApiResponse.setResponseMessage("Success");
+        }
+        return healthApiResponse;
+    }
+
+    public HealthApiResponse login(Patient patient) {
+        HealthApiResponse healthApiResponse = new HealthApiResponse();
+        List<Patient> patientsList = new ArrayList<>();
+        this.patientRepository.findPatientByUsernameAndPassword(patient.getUsername(), CryptUtils.encrypt(patient.getPassword()))
+                .forEach(patientsList::add);
+        if (patientsList.size() == 1) {
+            healthApiResponse.setResponseStatus(true);
+            healthApiResponse.setResponseMessage("Success");
+            healthApiResponse.setUsername(patient.getPatientId());
+        } else {
+            healthApiResponse.setResponseStatus(false);
+            healthApiResponse.setResponseMessage("Login Failed");
+        }
+        return healthApiResponse;
     }
 }

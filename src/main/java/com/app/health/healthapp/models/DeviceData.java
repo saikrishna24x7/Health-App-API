@@ -19,6 +19,9 @@ public class DeviceData {
     @Column(name = "data")
     private String data;
 
+    @Column(name = "patient")
+    private String patientId;
+
     @Column(name = "data_time")
     @CreationTimestamp
     private LocalDateTime dataTime;
@@ -27,7 +30,8 @@ public class DeviceData {
         super();
     }
 
-    public DeviceData(String data, LocalDateTime dataTime) {
+    public DeviceData(String patientId, String data, LocalDateTime dataTime) {
+        this.patientId = patientId;
         this.data = data;
         this.dataTime = dataTime;
     }
@@ -38,6 +42,14 @@ public class DeviceData {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
     public String getData() {

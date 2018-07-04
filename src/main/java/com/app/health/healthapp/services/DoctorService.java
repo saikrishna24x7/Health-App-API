@@ -98,7 +98,8 @@ public class DoctorService {
     public HealthApiResponse login(Doctor doctor) {
         HealthApiResponse healthApiResponse = new HealthApiResponse();
         List<Doctor> doctorList = new ArrayList<>();
-        this.doctorRepository.findDoctorsByUsernameAndPassword(doctor.getUsername(), CryptUtils.encrypt(doctor.getPassword())).forEach(doctorList::add);
+        this.doctorRepository.findDoctorsByUsernameAndPassword(doctor.getUsername(), CryptUtils.encrypt(doctor.getPassword()))
+                .forEach(doctorList::add);
         if (doctorList.size() == 1) {
             healthApiResponse.setResponseStatus(true);
             healthApiResponse.setResponseMessage("Success");

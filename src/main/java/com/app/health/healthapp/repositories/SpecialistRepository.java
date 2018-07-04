@@ -9,4 +9,6 @@ public interface SpecialistRepository extends CrudRepository<Specialist, Long> {
     List<Specialist> findSpecialistsByUsername(String username);
 
     List<Specialist> findSpecialistsByUsernameAndPassword(String username, String password);
+
+    boolean existsSpecialistByUsername(String username);
 }

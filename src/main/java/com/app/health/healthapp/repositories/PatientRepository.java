@@ -9,4 +9,6 @@ public interface PatientRepository extends CrudRepository<Patient, Long> {
     List<Patient> findPatientsByUsername(String username);
 
     List<Patient> findPatientByUsernameAndPassword(String username, String password);
+
+    boolean existsPatientByUsername(String username);
 }

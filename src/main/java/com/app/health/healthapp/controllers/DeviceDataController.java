@@ -1,6 +1,7 @@
 package com.app.health.healthapp.controllers;
 
 import com.app.health.healthapp.models.DeviceData;
+import com.app.health.healthapp.models.HealthApiResponse;
 import com.app.health.healthapp.services.DeviceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,5 +31,10 @@ public class DeviceDataController {
     @RequestMapping(value = "/getall")
     public List<DeviceData> getAddDeviceData() {
         return this.deviceDataService.getAllDeviceData();
+    }
+
+    @RequestMapping(value = "/getdevicedatabypatientid", method = RequestMethod.POST)
+    public HealthApiResponse getAddDeviceDataByPatientId(@RequestBody DeviceData deviceData) {
+        return this.deviceDataService.getDeviceDataByPatient(deviceData);
     }
 }

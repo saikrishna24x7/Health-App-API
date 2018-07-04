@@ -1,9 +1,12 @@
 package com.app.health.healthapp.models;
 
+import java.util.List;
+
 public class HealthApiResponse {
     private boolean responseStatus;
     private String responseMessage;
     private String username;
+    private List<String> patientData;
 
     public HealthApiResponse() {
         super();
@@ -31,5 +34,13 @@ public class HealthApiResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<String> getPatientData() {
+        return patientData;
+    }
+
+    public void setPatientData(List<String> patientData) {
+        this.patientData = patientData;
     }
 }

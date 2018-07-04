@@ -21,11 +21,7 @@ public class Patient {
     private String username;
 
     @Column(name = "password")
-    @JsonIgnore
     private String password;
-
-    @Column(name = "address")
-    private String address;
 
     @Column(name = "phone")
     private String phone;
@@ -40,14 +36,14 @@ public class Patient {
         super();
     }
 
-    public Patient(String username, String password, String address, String phone, String email, String doctor) {
+    public Patient(String username, String password, String patientId, String phone, String email, String doctor) {
         super();
         this.username = username;
         this.password = password;
-        this.address = address;
         this.phone = phone;
         this.email = email;
         this.doctor = doctor;
+        this.patientId = patientId;
     }
 
     public long getId() {
@@ -56,6 +52,14 @@ public class Patient {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
     public String getUsername() {
@@ -72,14 +76,6 @@ public class Patient {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {

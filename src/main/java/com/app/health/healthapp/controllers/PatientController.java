@@ -1,5 +1,6 @@
 package com.app.health.healthapp.controllers;
 
+import com.app.health.healthapp.models.HealthApiResponse;
 import com.app.health.healthapp.models.Patient;
 import com.app.health.healthapp.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +56,12 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login() {
-        return "";
+    public HealthApiResponse login(@RequestBody Patient patient) {
+        return this.patientService.login(patient);
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signUp(@RequestBody Patient patient) {
+    public HealthApiResponse signUp(@RequestBody Patient patient) {
         return this.patientService.signup(patient);
     }
 }
