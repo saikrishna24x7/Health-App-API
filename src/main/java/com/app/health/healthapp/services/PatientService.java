@@ -92,7 +92,8 @@ public class PatientService {
         if (patientsList.size() == 1) {
             healthApiResponse.setResponseStatus(true);
             healthApiResponse.setResponseMessage("Success");
-            healthApiResponse.setUsername(patient.getPatientId());
+            healthApiResponse.setUsername(patientsList.get(0).getPatientId());
+            healthApiResponse.setDoctorName(patientsList.get(0).getDoctor());
         } else {
             healthApiResponse.setResponseStatus(false);
             healthApiResponse.setResponseMessage("Login Failed");

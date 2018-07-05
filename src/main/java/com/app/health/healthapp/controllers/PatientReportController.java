@@ -1,5 +1,6 @@
 package com.app.health.healthapp.controllers;
 
+import com.app.health.healthapp.models.HealthApiResponse;
 import com.app.health.healthapp.models.PatientReport;
 import com.app.health.healthapp.services.PatientReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,29 @@ public class PatientReportController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addPatientReport(@RequestBody PatientReport patientReport) {
+    public HealthApiResponse addPatientReport(@RequestBody PatientReport patientReport) {
         return this.patientReportService.addPatientReport(patientReport);
+    }
+
+    @RequestMapping(value = "/getbydoctor", method = RequestMethod.POST)
+    public HealthApiResponse getPatientReportsByDocotor(@RequestBody PatientReport patientReport) {
+        return this.patientReportService.getReportsByDoctor(patientReport);
+    }
+
+    @RequestMapping(value = "/getalltest")
+    public PatientReport getAllPatientReports1() {
+        return new PatientReport();
     }
 
     @RequestMapping(value = "/getall")
     public List<PatientReport> getAllPatientReports() {
-        return this.getAllPatientReports();
+        return this.patientReportService.getAllPatientReports();
     }
 
     @RequestMapping(value = "/getbypatientid", method = RequestMethod.POST)
     public List<PatientReport> getAllPatientReportsByPatientId(@RequestBody PatientReport patientReport) {
         return this.patientReportService.getAllPatientReportsByPatient(patientReport.getPatientID());
     }
+
+
 }

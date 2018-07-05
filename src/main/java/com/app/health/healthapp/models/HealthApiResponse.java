@@ -7,6 +7,9 @@ public class HealthApiResponse {
     private String responseMessage;
     private String username;
     private List<String> patientData;
+    private String doctorName;
+    private List<PatientReport> patientReports;
+    private List<Comment> comments;
 
     public HealthApiResponse() {
         super();
@@ -42,5 +45,29 @@ public class HealthApiResponse {
 
     public void setPatientData(List<String> patientData) {
         this.patientData = patientData;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public List<PatientReport> getPatientReports() {
+        return patientReports;
+    }
+
+    public void setPatientReports(List<PatientReport> patientReports) {
+        this.patientReports = patientReports;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

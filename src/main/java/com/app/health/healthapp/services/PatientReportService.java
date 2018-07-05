@@ -1,5 +1,6 @@
 package com.app.health.healthapp.services;
 
+import com.app.health.healthapp.models.HealthApiResponse;
 import com.app.health.healthapp.models.PatientReport;
 import com.app.health.healthapp.repositories.PatientReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,12 @@ public class PatientReportService {
         this.patientReportRepository = patientReportRepository;
     }
 
-    public String addPatientReport(PatientReport patientReport) {
+    public HealthApiResponse addPatientReport(PatientReport patientReport) {
+        HealthApiResponse healthApiResponse = new HealthApiResponse();
         this.patientReportRepository.save(patientReport);
-        return "Saved";
+        healthApiResponse.setResponseStatus(true);
+        healthApiResponse.setResponseMessage("Success");
+        return healthApiResponse;
     }
 
     public List<PatientReport> getAllPatientReports() {
@@ -33,5 +37,15 @@ public class PatientReportService {
         List<PatientReport> patientReportList = new ArrayList<>();
         this.patientReportRepository.findAllByPatientID(patientId).forEach(patientReportList::add);
         return patientReportList;
+    }
+
+    public HealthApiResponse getReportsByDoctor(PatientReport patientReport) {
+        HealthApiResponse healthApiResponse = new HealthApiResponse();
+        List<PatientReport> patientReportList = new ArrayList<>();
+        this.patientReportRepository.findAllByDoctorName(patientReport.getDoctorName()).forEach(patientReportList::add);
+        healthApiResponse.setResponseStatus(true);
+        healthApiResponse.setResponseMessage("Success");
+        healthApiResponse.setPatientReports(patientReportList);
+        return healthApiResponse;
     }
 }

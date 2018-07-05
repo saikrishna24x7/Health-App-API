@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PatientReportRepository extends CrudRepository<PatientReport, Long> {
     List<PatientReport> findAllByPatientID(String patientId);
+
+    List<PatientReport> findAllByDoctorName(String doctorName);
 }
