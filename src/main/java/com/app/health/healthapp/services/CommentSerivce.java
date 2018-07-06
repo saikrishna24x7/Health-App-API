@@ -35,4 +35,14 @@ public class CommentSerivce {
         return healthApiResponse;
     }
 
+    public HealthApiResponse getCommentsForPatient(Comment comment) {
+        HealthApiResponse healthApiResponse = new HealthApiResponse();
+        List<Comment> comments = new ArrayList<>();
+        this.commentsRepository.findCommentsByPatientId(comment.getPatientId()).forEach(comments::add);
+        healthApiResponse.setResponseStatus(true);
+        healthApiResponse.setResponseMessage("Success");
+        healthApiResponse.setComments(comments);
+        return healthApiResponse;
+    }
+
 }

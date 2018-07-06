@@ -20,7 +20,7 @@ public class CommentsController {
         this.commentSerivce = commentSerivce;
     }
 
-    @RequestMapping(value = "test")
+    @RequestMapping(value = "/test")
     public Comment test() {
         return new Comment();
     }
@@ -30,8 +30,8 @@ public class CommentsController {
         return this.commentSerivce.addComment(comment);
     }
 
-    @RequestMapping(value = "get")
-    public HealthApiResponse getComments() {
-        return this.commentSerivce.getComments();
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    public HealthApiResponse getCommentsByDoctor(@RequestBody Comment comment) {
+        return this.commentSerivce.getCommentsForPatient(comment);
     }
 }
