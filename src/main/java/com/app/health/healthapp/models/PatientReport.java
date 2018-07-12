@@ -25,6 +25,9 @@ public class PatientReport {
     @Column(name = "doctor_name")
     private String doctorName;
 
+    @Column(name = "specialist_name")
+    private String specialistName;
+
     @Column(name = "status")
     private String status;
 
@@ -46,11 +49,12 @@ public class PatientReport {
         super();
     }
 
-    public PatientReport(String patientID, String patientData, String doctorName, String status, byte[] image, long height, long width, LocalDateTime createdAt) {
+    public PatientReport(String patientID, String patientData, String doctorName, String specialistName, String status, byte[] image, long height, long width, LocalDateTime createdAt) {
         super();
         this.patientID = patientID;
         this.patientData = patientData;
         this.doctorName = doctorName;
+        this.specialistName = specialistName;
         this.status = status;
         this.image = image;
         this.height = height;
@@ -88,6 +92,14 @@ public class PatientReport {
 
     public void setDoctorName(String doctorName) {
         this.doctorName = doctorName;
+    }
+
+    public String getSpecialistName() {
+        return specialistName;
+    }
+
+    public void setSpecialistName(String specialistName) {
+        this.specialistName = specialistName;
     }
 
     public String getStatus() {

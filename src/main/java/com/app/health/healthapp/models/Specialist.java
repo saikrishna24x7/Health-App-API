@@ -15,7 +15,6 @@ public class Specialist {
     private long id;
 
     @Column(name = "username")
-
     private String username;
 
     @Column(name = "password")

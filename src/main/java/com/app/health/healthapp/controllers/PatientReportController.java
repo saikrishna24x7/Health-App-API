@@ -48,5 +48,14 @@ public class PatientReportController {
         return this.patientReportService.getAllPatientReportsByPatient(patientReport.getPatientID());
     }
 
+    @RequestMapping(value = "/getbyspecialist", method = RequestMethod.POST)
+    public HealthApiResponse getAllPatientReportsBySpecialistName(@RequestBody PatientReport patientReport) {
+        return this.patientReportService.getReportsBySpecialist(patientReport);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public HealthApiResponse updateSpecialist(@RequestBody PatientReport patientReport) {
+        return this.patientReportService.updateSpecialist(patientReport);
+    }
 
 }
