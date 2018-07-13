@@ -6,7 +6,7 @@ public class HealthApiResponse {
     private boolean responseStatus;
     private String responseMessage;
     private String username;
-    private List<String> patientData;
+    private List<DeviceData> patientData;
     private String doctorName;
     private List<PatientReport> patientReports;
     private List<Comment> comments;
@@ -39,11 +39,11 @@ public class HealthApiResponse {
         this.username = username;
     }
 
-    public List<String> getPatientData() {
+    public List<DeviceData> getPatientData() {
         return patientData;
     }
 
-    public void setPatientData(List<String> patientData) {
+    public void setPatientData(List<DeviceData> patientData) {
         this.patientData = patientData;
     }
 

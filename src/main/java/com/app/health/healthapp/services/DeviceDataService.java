@@ -35,10 +35,10 @@ public class DeviceDataService {
         HealthApiResponse healthApiResponse = new HealthApiResponse();
         healthApiResponse.setResponseStatus(true);
         List<DeviceData> deviceDataList = new ArrayList<>();
-        List<String> dataList = new ArrayList<>();
+        List<DeviceData> dataList = new ArrayList<>();
         this.deviceDataRepository.getDeviceDataByPatientId(deviceData.getPatientId()).forEach(deviceDataList::add);
         for (DeviceData data : deviceDataList) {
-            dataList.add(data.getData());
+            dataList.add(data);
         }
         healthApiResponse.setPatientData(dataList);
         return healthApiResponse;
