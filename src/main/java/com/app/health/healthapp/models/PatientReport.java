@@ -32,8 +32,16 @@ public class PatientReport {
     private String status;
 
     @Lob
-    @Column(name = "image", columnDefinition = "longblob")
-    private byte[] image;
+    @Column(name = "image1", columnDefinition = "longblob")
+    private byte[] image1;
+
+    @Lob
+    @Column(name = "image2", columnDefinition = "longblob")
+    private byte[] image2;
+
+    @Lob
+    @Column(name = "image3", columnDefinition = "longblob")
+    private byte[] image3;
 
     @Column(name = "height")
     private long height;
@@ -47,19 +55,6 @@ public class PatientReport {
 
     public PatientReport() {
         super();
-    }
-
-    public PatientReport(String patientID, String patientData, String doctorName, String specialistName, String status, byte[] image, long height, long width, LocalDateTime createdAt) {
-        super();
-        this.patientID = patientID;
-        this.patientData = patientData;
-        this.doctorName = doctorName;
-        this.specialistName = specialistName;
-        this.status = status;
-        this.image = image;
-        this.height = height;
-        this.width = width;
-        this.createdAt = createdAt;
     }
 
     public long getId() {
@@ -110,12 +105,28 @@ public class PatientReport {
         this.status = status;
     }
 
-    public byte[] getImage() {
-        return image;
+    public byte[] getImage1() {
+        return image1;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage1(byte[] image1) {
+        this.image1 = image1;
+    }
+
+    public byte[] getImage2() {
+        return image2;
+    }
+
+    public void setImage2(byte[] image2) {
+        this.image2 = image2;
+    }
+
+    public byte[] getImage3() {
+        return image3;
+    }
+
+    public void setImage3(byte[] image3) {
+        this.image3 = image3;
     }
 
     public long getHeight() {
@@ -141,4 +152,6 @@ public class PatientReport {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+
 }
